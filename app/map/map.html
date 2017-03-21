@@ -1,0 +1,38 @@
+<ul>
+    <li ng-repeat="station in mc.stations">{{station.position.coordinates[0]}},{{station.position.coordinates[1]}}</li>
+</ul>
+<hr/>
+<div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyBuuD5RVKnZjS1RP-sOdcbG3fntLRfNEvw">
+<ng-map
+    default-style="false"
+    center="current-location"
+    geo-fallback-center="52.407440512056,16.92247791451"
+>
+    <marker
+        ng-repeat="station in mc.stations"
+        position="{{station.position.coordinates[1]}},{{station.position.coordinates[0]}}"
+        id="{{station.id}}"
+        on-click="mc.showStation(event, station.id)"
+    >
+
+    </marker>
+    <info-window id="station">
+      <div ng-non-bindable="">
+        Lat: {{anchor.getPosition().lat()}}<br/>
+        Lng: {{anchor.getPosition().lng()}}<br/>
+        <h5>{{mc.station.city}}</h5>
+          <table>
+              <thead>
+                <tr><th>Name</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(k, v) in mc.station.last_metering">
+                    <td>{{k}}</td>
+                    <td>{{v}}</td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+    </info-window>
+</ng-map>
+</div>

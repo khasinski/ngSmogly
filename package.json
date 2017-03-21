@@ -1,0 +1,21 @@
+{
+  "name": "ngSmogly",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Alternative front-end for Smogly",
+  "repository": "https://github.com/khasinski/ngSmogly",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+
+    "update-deps": "npm update",
+    "postupdate-deps": "bower update",
+
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000 -c-1 ./app",
+  }
+}
